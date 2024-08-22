@@ -4,15 +4,14 @@
 This project is a Flask API that connects to a PostgreSQL database and exposes endpoints for data retrieval.
 
 ## Setup
+### Clone the repository:
+```bash
+git clone https://github.com/muyiwao/APIPython.git
+cd APIPython
+```
 
-1. **Clone the repository**:
-   ```sh
-   git clone https://github.com/muyiwao/APIPython.git
-   cd your-public-repository
-   
-## Project Structure
-
-   ```plaintext
+## Project Structure:
+```bash
    APIPython/
    │
    ├── src/
@@ -32,4 +31,11 @@ This project is a Flask API that connects to a PostgreSQL database and exposes e
    ├── requirements.txt            # Python dependencies
    └── data/
     ├── customers.csv           # Sample data file for your application
-    └── data.json               # JSON data file (if needed)
+    └── data.json   
+```
+
+## Documentation:
+[PPT - Automated Flask API: Data Retrieval and API Deployment](https://docs.google.com/presentation/d/1POA9AAxhL9brIXMqqRh0sMiqjhSvTKNCBguFZPrcpek/edit#slide=id.p)
+
+
+
