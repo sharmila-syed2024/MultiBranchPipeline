@@ -10,7 +10,7 @@ git clone https://github.com/muyiwao/APIPython.git
 cd APIPython
 ```
 
-## Project Structure:
+## Project Structure
 ```bash
    APIPython/
    │
@@ -34,8 +34,10 @@ cd APIPython
     └── data.json   
 ```
 
-## Documentation:
-[PPT - Automated Flask API: Data Retrieval and API Deployment](https://docs.google.com/presentation/d/1POA9AAxhL9brIXMqqRh0sMiqjhSvTKNCBguFZPrcpek/edit#slide=id.p)
+## Documentation
+[DOC - Automated Flask API: Data Retrieval and API Deployment](https://docs.google.com/document/d/1x2HqVoatImTDcMQ8bwDp_8liu50ZY28idWoBswVBboA/edit?usp=sharing)
+
+[PPT - Automated Flask API: Data Retrieval and API Deployment](https://docs.google.com/presentation/d/1POA9AAxhL9brIXMqqRh0sMiqjhSvTKNCBguFZPrcpek/edit?usp=sharing)
 
 
 
