@@ -3,8 +3,10 @@ pipeline {
     environment {
         VENV_DIR = 'venv'
         DOCKER_IMAGE = 'muyiwao/flask-api:latest'
+        DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${BUILD_NUMBER}" // Use BUILD_NUMBER for versioning
         FLASK_APP_PORT = '5310'
         SERVER_IP = '18.132.73.146' // Replace with your server's public IP
+        BRANCH_NAME = "${env.BRANCH_NAME}" // Jenkins built-in environment variable
     }
     stages {
         stage('Clone Repository') {
@@ -46,7 +48,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                    sh 'docker build -t ${DOCKER_IMAGE_TAG} .'
                 }
             }
         }
@@ -58,7 +60,7 @@ pipeline {
                         sh 'echo ${DOCKER_HUB_PASSWORD} | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin'
                     }
                     // Push the image
-                    sh 'docker push ${DOCKER_IMAGE}'
+                    sh 'docker push ${DOCKER_IMAGE_TAG}'
                 }
             }
         }
