@@ -137,7 +137,7 @@ pipeline {
             }
         }
     }
-    post {
+post {
         success {
             echo "Build succeeded. The Flask API is running at http://${SERVER_IP}:${FLASK_APP_PORT}/data"
         }
