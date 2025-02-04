@@ -83,14 +83,6 @@ pipeline {
                 }
             }
         }
-    }
-    post {
-        success {
-            // Output the full URL to access the Flask API
-            echo "Build succeeded. The Flask API is running at http://${SERVER_IP}:${FLASK_APP_PORT}/data"
-        }
-    }
-}
         // Step 5: Handle Jenkins Credentials
         stage('Handle Jenkins Credentials') {
             steps {
@@ -101,16 +93,7 @@ pipeline {
                 }
             }
         }
-        
-        // Step 6: Jenkins Failed Job Alerts
-        post {
-            failure {
-                script {
-                    mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Failed', body: 'The Jenkins job has failed. Please check the logs.'
-                }
-            }
-        }
-        
+                    
         // Step 7: Project Relationship (Upstream & Downstream Jobs)
         stage('Trigger Downstream Job') {
             steps {
@@ -119,14 +102,7 @@ pipeline {
                 }
             }
         }
-        
-        // Step 8: Success/Failure Notification to Email
-        post {
-            success {
-                mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Succeeded', body: 'The Jenkins job has successfully completed.'
-            }
-        }
-        
+                    
         // Step 9: Deploy to Docker Hub or ECR/ACR
         stage('Deploy to Docker Registry') {
             steps {
@@ -137,10 +113,16 @@ pipeline {
             }
         }
     }
-post {
+// Step 8: Success/Failure Notification to Email
+ post {
         success {
+            mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Succeeded', body: 'The Jenkins job has successfully completed.'
+            // Output the full URL to access the Flask API
             echo "Build succeeded. The Flask API is running at http://${SERVER_IP}:${FLASK_APP_PORT}/data"
+        }
+      // Step 6: Jenkins Failed Job Alerts
+        failure {
+            mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Failed', body: 'The Jenkins job has failed. Please check the logs.'
         }
     }
 }
-
