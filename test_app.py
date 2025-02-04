@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from flask.testing import FlaskClient
 
-# Assuming your Flask app is named `app` and is in `app.py`
+# Assuming your Flask-app is named `app` and is in `app.py`
 from src.dbapi import app
 
 
