@@ -91,5 +91,56 @@ pipeline {
         }
     }
 }
-
+        // Step 5: Handle Jenkins Credentials
+        stage('Handle Jenkins Credentials') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com'
+                    }
+                }
+            }
+        }
+        
+        // Step 6: Jenkins Failed Job Alerts
+        post {
+            failure {
+                script {
+                    mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Failed', body: 'The Jenkins job has failed. Please check the logs.'
+                }
+            }
+        }
+        
+        // Step 7: Project Relationship (Upstream & Downstream Jobs)
+        stage('Trigger Downstream Job') {
+            steps {
+                script {
+                    build job: 'Downstream_Job_Name'
+                }
+            }
+        }
+        
+        // Step 8: Success/Failure Notification to Email
+        post {
+            success {
+                mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Succeeded', body: 'The Jenkins job has successfully completed.'
+            }
+        }
+        
+        // Step 9: Deploy to Docker Hub or ECR/ACR
+        stage('Deploy to Docker Registry') {
+            steps {
+                script {
+                    sh 'docker tag ${DOCKER_IMAGE} <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE}'
+                    sh 'docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE}'
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo "Build succeeded. The Flask API is running at http://${SERVER_IP}:${FLASK_APP_PORT}/data"
+        }
+    }
+}
 
