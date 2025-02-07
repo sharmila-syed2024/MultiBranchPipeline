@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/muyiwao/APIPython.git', branch: 'main'
+                git url: 'https://github.com/sharmila-syed2024/MultiBranchPipeline.git', branch: 'main'
             }
         }
         stage('Set Up Virtual Environment') {
