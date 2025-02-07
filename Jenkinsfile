@@ -84,14 +84,14 @@ pipeline {
             }
         }
         // Step 5: Handle Jenkins Credentials
-        stage('Handle Jenkins Credentials') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com'
-                    }
-                }
-            }
+        // stage('Handle Jenkins Credentials') {
+        //     steps {
+        //         script {
+        //             withCredentials([usernamePassword(credentialsId: 'ecr-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+        //                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com'
+        //             }
+        //         }
+        //     }
         }
                     
         // Step 7: Project Relationship (Upstream & Downstream Jobs)
