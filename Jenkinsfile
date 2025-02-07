@@ -125,4 +125,4 @@ pipeline {
             mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Failed', body: 'The Jenkins job has failed. Please check the logs.'
         }
     }
-}
+
