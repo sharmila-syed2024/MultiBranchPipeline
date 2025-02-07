@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         VENV_DIR = 'venv'
-        DOCKER_IMAGE = 'muyiwao/flask-api:latest'
+        DOCKER_IMAGE = 'syedsharmila/flask-api:latest'
         //DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${BUILD_NUMBER}" // Use BUILD_NUMBER for versioning
         FLASK_APP_PORT = '5310'
         SERVER_IP = '18.132.73.146' // Replace with your server's public IP
