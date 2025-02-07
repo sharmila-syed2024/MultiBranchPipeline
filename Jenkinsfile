@@ -113,7 +113,7 @@ pipeline {
             }
         }
     }
-// Step 8: Success/Failure Notification to Email
+//Step 8: Success/Failure Notification to Email
  post {
         success {
             mail to: 'syed.begum@informationtechconsultants.co.uk', subject: 'Jenkins Job Succeeded', body: 'The Jenkins job has successfully completed.'
